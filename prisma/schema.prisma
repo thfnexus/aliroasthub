@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String       @id @default(cuid())
+  name          String?
+  email         String?      @unique
+  password      String?
+  image         String?
+  role          String       @default("USER")
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  enrollments   Enrollment[]
+  purchases     Purchase[]
+}
+
+model Course {
+  id          String       @id @default(cuid())
+  title       String
+  description String
+  content     String?      @db.Text // Long Markdown description
+  category    String       @default("COURSE") // COURSE, SERVICE, HOSTING
+  imageUrl    String?
+  price       Float        @default(0)
+  duration    String       @default("0 hours")
+  students    Int          @default(0)
+  rating      Float        @default(0.0)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  enrollments Enrollment[]
+  purchases   Purchase[]
+}
+
+model Enrollment {
+  id        String   @id @default(cuid())
+  userId    String
+  courseId  String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+}
+
+model Purchase {
+  id         String   @id @default(cuid())
+  userId     String
+  courseId   String
+  amount     Float
+  method     String   @default("Manual") // Easypaisa, Jazzcash, etc.
+  trxId      String? // Manual Transaction ID
+  screenshot String? // Path or URL to uploaded screenshot
+  status     String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+}
