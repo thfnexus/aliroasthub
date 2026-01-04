@@ -6,7 +6,7 @@
   --color-accent: #f43f5e;
   --color-background: #ffffff;
   --color-foreground: #0f172a;
-  
+
   --color-dark-background: #020617;
   --color-dark-foreground: #f8fafc;
 
@@ -18,13 +18,7 @@
   :root {
     --background: #ffffff;
     --foreground: #0f172a;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: #020617;
-      --foreground: #f8fafc;
-    }
+    color-scheme: light;
   }
 
   body {
@@ -38,12 +32,15 @@
   .glass {
     @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-glass;
   }
+
   .dark .glass {
     @apply bg-slate-950/70 border-slate-800/20 shadow-glass;
   }
+
   .gradient-text {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
   }
+
   .gradient-bg {
     @apply bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900;
   }
