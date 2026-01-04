@@ -16,7 +16,7 @@ export default async function DashboardLayout({
     }
 
     return (
-        <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950">
+        <div className="flex min-h-screen bg-slate-50">
             {/* Sidebar */}
             <aside className="hidden lg:flex w-64 flex-col glass border-r border-white/10 sticky top-16 h-[calc(100vh-4rem)]">
                 <div className="p-6 space-y-2">

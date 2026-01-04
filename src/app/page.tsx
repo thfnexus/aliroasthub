@@ -54,7 +54,7 @@ export default async function Home() {
             { title: "Offer Approval System", icon: <Shield />, desc: "Streamlined system for quick and secure offer management." },
             { title: "Premium Hosting", icon: <Globe />, desc: "High-speed, elite hosting & domain plans for businesses." },
           ].map((item, i) => (
-            <div key={i} className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-xl hover:-translate-y-2 transition-all border border-slate-200 dark:border-white/10 group relative overflow-hidden">
+            <div key={i} className="bg-white p-8 rounded-3xl shadow-xl hover:-translate-y-2 transition-all border border-slate-200 group relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-500" />
 
               <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:rotate-6 transition-transform relative z-10">
@@ -71,7 +71,7 @@ export default async function Home() {
       </section>
 
       {/* Courses Preview */}
-      <section className="bg-slate-50 dark:bg-slate-900/50 py-24">
+      <section className="bg-slate-50 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div>
@@ -85,9 +85,9 @@ export default async function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {recentCourses.map((course) => (
-              <div key={course.id} className="group bg-white dark:bg-slate-950 rounded-2xl overflow-hidden shadow-lg border border-slate-100 dark:border-white/10 flex flex-col hover:-translate-y-2 transition-transform duration-300">
+              <div key={course.id} className="group bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 flex flex-col hover:-translate-y-2 transition-transform duration-300">
                 {/* Image Area */}
-                <div className={`h-48 relative ${!course.imageUrl?.startsWith('http') ? (course.imageUrl || 'bg-slate-800') : 'bg-slate-200'}`}>
+                <div className={`h-48 relative ${!course.imageUrl?.startsWith('http') ? (course.imageUrl || 'bg-slate-100') : 'bg-slate-50'}`}>
                   {course.imageUrl?.startsWith('http') ? (
                     <img
                       src={course.imageUrl}
@@ -99,7 +99,7 @@ export default async function Home() {
                       <BookOpen className="h-16 w-16 text-white" />
                     </div>
                   )}
-                  <div className="absolute top-4 right-4 bg-white dark:bg-slate-950 px-3 py-1.5 rounded-lg shadow-lg font-bold text-sm text-primary">
+                  <div className="absolute top-4 right-4 bg-white px-3 py-1.5 rounded-lg shadow-lg font-bold text-sm text-primary">
                     PKR {course.price.toLocaleString()}
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export default async function Home() {
                     <Link href={`/courses/${course.id}/checkout`} className="flex-1 py-3 bg-primary text-white text-center rounded-xl font-bold hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
                       <ShoppingCart className="h-4 w-4" /> Buy Now
                     </Link>
-                    <Link href={`/courses/${course.id}`} className="flex-1 py-3 bg-slate-100 dark:bg-slate-800 text-foreground text-center rounded-xl font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    <Link href={`/courses/${course.id}`} className="flex-1 py-3 bg-slate-100 text-foreground text-center rounded-xl font-bold hover:bg-slate-200 transition-colors">
                       View Details
                     </Link>
                   </div>
@@ -173,7 +173,7 @@ export default async function Home() {
             <Link href="/signup" className="px-8 py-4 bg-primary text-white rounded-full font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
               Get Started Now
             </Link>
-            <Link href="/courses" className="px-8 py-4 border border-slate-200 dark:border-white/10 rounded-full font-bold hover:bg-white/5 transition-all">
+            <Link href="/courses" className="px-8 py-4 border border-slate-200 rounded-full font-bold hover:bg-slate-50 transition-all">
               Browse Catalog
             </Link>
           </div>

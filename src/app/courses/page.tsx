@@ -25,11 +25,11 @@ export default async function CoursesPage() {
 
             {/* Course Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {courses.map((course) => (
-                    <div key={course.id} className="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                {courses.map((course: any) => (
+                    <div key={course.id} className="group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
                         {/* Image Area */}
                         {/* Check if imageUrl is a URL or a class string */}
-                        <div className={`h-48 relative ${!course.imageUrl?.startsWith('http') ? (course.imageUrl || 'bg-slate-800') : 'bg-slate-200'}`}>
+                        <div className={`h-48 relative ${!course.imageUrl?.startsWith('http') ? (course.imageUrl || 'bg-slate-100') : 'bg-slate-50'}`}>
                             {course.imageUrl?.startsWith('http') ? (
                                 <img
                                     src={course.imageUrl}
@@ -41,7 +41,7 @@ export default async function CoursesPage() {
                                     <BookOpen className="h-16 w-16 text-white" />
                                 </div>
                             )}
-                            <div className="absolute top-4 right-4 bg-white dark:bg-slate-950 px-3 py-1.5 rounded-lg shadow-lg font-bold text-sm text-primary">
+                            <div className="absolute top-4 right-4 bg-white px-3 py-1.5 rounded-lg shadow-lg font-bold text-sm text-primary">
                                 PKR {course.price.toLocaleString()}
                             </div>
                         </div>
@@ -67,7 +67,7 @@ export default async function CoursesPage() {
                                 <Link href={`/courses/${course.id}/checkout`} className="flex-1 py-3 bg-primary text-white text-center rounded-xl font-bold hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
                                     <ShoppingCart className="h-4 w-4" /> Buy Now
                                 </Link>
-                                <Link href={`/courses/${course.id}`} className="flex-1 py-3 bg-slate-100 dark:bg-slate-800 text-foreground text-center rounded-xl font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                                <Link href={`/courses/${course.id}`} className="flex-1 py-3 bg-slate-100 text-foreground text-center rounded-xl font-bold hover:bg-slate-200 transition-colors">
                                     View Details
                                 </Link>
                             </div >

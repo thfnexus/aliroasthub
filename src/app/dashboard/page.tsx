@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import { Course } from "@prisma/client";
 import { BookOpen, Settings, ExternalLink, ArrowRight } from "lucide-react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
@@ -23,7 +24,7 @@ export default async function DashboardPage() {
     });
 
     // Filter to only show enrolled courses
-    const myCourses = allCourses.filter(course => course.enrollments.length > 0);
+    const myCourses = allCourses.filter((course: any) => course.enrollments.length > 0);
     const enrolledCount = myCourses.length;
 
     return (
@@ -38,7 +39,7 @@ export default async function DashboardPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
                 {/* My Courses Section */}
-                <section className="glass p-8 rounded-[2rem] border-white/10">
+                <section className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
                     <div className="flex justify-between items-center mb-6">
                         <h2 className="text-xl font-bold flex items-center gap-2">
                             <BookOpen className="text-primary h-6 w-6" /> My Courses
@@ -49,8 +50,8 @@ export default async function DashboardPage() {
                     </div>
                     <div className="space-y-4">
                         {myCourses.length > 0 ? (
-                            myCourses.map((course) => (
-                                <div key={course.id} className="p-4 bg-white dark:bg-slate-900 rounded-2xl flex items-center gap-4 border border-slate-100 dark:border-white/5 transition-all hover:scale-[1.02]">
+                            myCourses.map((course: any) => (
+                                <div key={course.id} className="p-4 bg-slate-50 rounded-2xl flex items-center gap-4 border border-slate-100 transition-all hover:scale-[1.02]">
                                     <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
                                         <BookOpen className="h-6 w-6" />
                                     </div>
@@ -63,7 +64,7 @@ export default async function DashboardPage() {
                                     <Link
                                         href={course.title === "Pay Per Call Mastery Program" ? "https://docs.google.com/document/d/1SeaTPgZjteZIw2a9phRkTcYfdNklkq98emdHrPaoyXI/edit?usp=sharing" : `/courses/${course.id}`}
                                         target={course.title === "Pay Per Call Mastery Program" ? "_blank" : undefined}
-                                        className="p-2 rounded-lg transition-colors hover:bg-slate-100 dark:hover:bg-white/5 text-primary"
+                                        className="p-2 rounded-lg transition-colors hover:bg-slate-200 text-primary"
                                         title="Access Course Content"
                                     >
                                         <ExternalLink className="h-4 w-4" />
@@ -71,7 +72,7 @@ export default async function DashboardPage() {
                                 </div>
                             ))
                         ) : (
-                            <div className="text-center p-8 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-dashed border-slate-200 dark:border-white/10">
+                            <div className="text-center p-8 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
                                 <BookOpen className="h-10 w-10 text-slate-300 mx-auto mb-3" />
                                 <p className="text-foreground/60 font-medium text-sm">You haven't purchased any courses yet.</p>
                                 <Link href="/courses" className="inline-flex items-center gap-2 mt-4 text-xs font-bold bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-all">
@@ -83,7 +84,7 @@ export default async function DashboardPage() {
                 </section>
 
                 {/* My Services Section */}
-                <section className="glass p-8 rounded-[2rem] border-white/10">
+                <section className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
                     <div className="flex justify-between items-center mb-6">
                         <h2 className="text-xl font-bold flex items-center gap-2">
                             <Settings className="text-secondary h-6 w-6" /> My Services
@@ -92,7 +93,7 @@ export default async function DashboardPage() {
                             New Request
                         </Link>
                     </div>
-                    <div className="text-center p-8 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-dashed border-slate-200 dark:border-white/10">
+                    <div className="text-center p-8 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
                         <Settings className="h-10 w-10 text-slate-300 mx-auto mb-3" />
                         <p className="text-foreground/60 font-medium text-sm">No active services.</p>
                         <Link href="/services" className="inline-flex items-center gap-2 mt-4 text-xs font-bold bg-secondary text-white px-4 py-2 rounded-lg hover:bg-secondary/90 transition-all">
@@ -104,15 +105,15 @@ export default async function DashboardPage() {
 
             {/* Quick Actions / Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <div className="glass p-6 rounded-2xl border-white/10 text-center">
+                <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm text-center">
                     <p className="text-foreground/50 text-xs font-bold uppercase tracking-widest mb-2">Active Courses</p>
                     <p className="text-3xl font-black text-primary">{enrolledCount}</p>
                 </div>
-                <div className="glass p-6 rounded-2xl border-white/10 text-center">
+                <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm text-center">
                     <p className="text-foreground/50 text-xs font-bold uppercase tracking-widest mb-2">Active Services</p>
                     <p className="text-3xl font-black text-secondary">0</p>
                 </div>
-                <div className="glass p-6 rounded-2xl border-white/10 text-center">
+                <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm text-center">
                     <p className="text-foreground/50 text-xs font-bold uppercase tracking-widest mb-2">Account Status</p>
                     <p className="text-3xl font-black text-accent capitalize">{session.user.role.toLowerCase()}</p>
                 </div>

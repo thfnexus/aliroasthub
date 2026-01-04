@@ -21,7 +21,7 @@ export default async function CheckoutPage({ params }: { params: Promise<{ id: s
     }
 
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pb-20">
+        <div className="min-h-screen bg-slate-50 pb-20">
             <div className="bg-slate-900 text-white py-12">
                 <div className="max-w-4xl mx-auto px-4 text-center">
                     <h1 className="text-2xl font-bold mb-2">Checkout</h1>
@@ -34,7 +34,7 @@ export default async function CheckoutPage({ params }: { params: Promise<{ id: s
 
             {/* Price Summary (can be integrated into form, but adding here for context) */}
             <div className="max-w-4xl mx-auto px-4 -mt-8 text-center">
-                <div className="inline-block bg-white dark:bg-slate-950 px-6 py-2 rounded-full shadow-lg border border-slate-200 dark:border-white/10">
+                <div className="inline-block bg-white px-6 py-2 rounded-full shadow-lg border border-slate-100">
                     <span className="text-sm text-foreground/60 mr-2">Total Payable:</span>
                     <span className="text-xl font-bold text-primary">PKR {course.price.toLocaleString()}</span>
                 </div>

@@ -33,7 +33,7 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pt-24 pb-12 overflow-x-hidden relative">
+        <div className="min-h-screen bg-slate-50 pt-24 pb-12 overflow-x-hidden relative">
             {/* Background Decorations */}
             <div className="absolute top-20 left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[128px] opacity-30 pointer-events-none" />
             <div className="absolute bottom-20 right-[-10%] w-[600px] h-[600px] bg-purple-500/20 rounded-full blur-[128px] opacity-30 pointer-events-none" />
@@ -58,7 +58,7 @@ export default function ContactPage() {
 
                     {/* Contact Info Cards - Takes 2 columns */}
                     <div className="lg:col-span-2 space-y-4 flex flex-col justify-center">
-                        <div className="glass p-6 rounded-2xl border-white/10 hover:border-primary/30 transition-all hover:-translate-y-1 duration-300 md:h-full flex flex-col justify-center bg-white/40 dark:bg-slate-900/40 backdrop-blur-md">
+                        <div className="bg-white/40 backdrop-blur-md p-6 rounded-2xl border border-slate-100 hover:border-primary/30 transition-all hover:-translate-y-1 duration-300 md:h-full flex flex-col justify-center">
                             <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center text-white mb-4 shadow-lg shadow-primary/20">
                                 <Mail className="h-6 w-6" />
                             </div>
@@ -67,7 +67,7 @@ export default function ContactPage() {
                             <a href="mailto:help@aliroasthub.com" className="font-semibold text-primary hover:underline">help@aliroasthub.com</a>
                         </div>
 
-                        <div className="glass p-6 rounded-2xl border-white/10 hover:border-purple-500/30 transition-all hover:-translate-y-1 duration-300 md:h-full flex flex-col justify-center bg-white/40 dark:bg-slate-900/40 backdrop-blur-md">
+                        <div className="bg-white/40 backdrop-blur-md p-6 rounded-2xl border border-slate-100 hover:border-purple-500/30 transition-all hover:-translate-y-1 duration-300 md:h-full flex flex-col justify-center">
                             <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white mb-4 shadow-lg shadow-purple-500/20">
                                 <Phone className="h-6 w-6" />
                             </div>
@@ -76,19 +76,19 @@ export default function ContactPage() {
                             <a href="tel:+923414270742" className="font-semibold text-purple-500 hover:underline">+92 341 4270742</a>
                         </div>
 
-                        <div className="glass p-6 rounded-2xl border-white/10 hover:border-green-500/30 transition-all hover:-translate-y-1 duration-300 md:h-full flex flex-col justify-center bg-white/40 dark:bg-slate-900/40 backdrop-blur-md">
+                        <div className="bg-white/40 backdrop-blur-md p-6 rounded-2xl border border-slate-100 hover:border-green-500/30 transition-all hover:-translate-y-1 duration-300 md:h-full flex flex-col justify-center">
                             <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center text-white mb-4 shadow-lg shadow-green-500/20">
                                 <MapPin className="h-6 w-6" />
                             </div>
                             <h3 className="font-bold text-xl mb-1">Visit Us</h3>
                             <p className="text-foreground/60 mb-2 text-sm">Come say hello at our office HQ.</p>
-                            <span className="font-semibold text-green-600 dark:text-green-400">Lahore, Pakistan</span>
+                            <span className="font-semibold text-green-600">Lahore, Pakistan</span>
                         </div>
                     </div>
 
                     {/* Form Side - Takes 3 columns */}
                     <div className="lg:col-span-3">
-                        <div className="h-full glass p-8 md:p-10 rounded-[2rem] border-white/20 shadow-2xl shadow-black/5 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl relative overflow-hidden">
+                        <div className="h-full bg-white/80 backdrop-blur-xl p-8 md:p-10 rounded-[2rem] border border-slate-100 shadow-2xl shadow-black/5 relative overflow-hidden">
 
                             {/* Decorative gradient inside form */}
                             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
@@ -102,7 +102,7 @@ export default function ContactPage() {
                                     <p className="text-foreground/60 mb-10 text-lg max-w-sm mx-auto">Thank you for dropping a line. We'll get back to you faster than light speed.</p>
                                     <button
                                         onClick={() => setSent(false)}
-                                        className="px-8 py-3 bg-slate-100 dark:bg-slate-800 rounded-xl font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-white/5"
+                                        className="px-8 py-3 bg-slate-100 rounded-xl font-bold hover:bg-slate-200 transition-colors border border-slate-200"
                                     >
                                         Send Another Message
                                     </button>
@@ -127,7 +127,7 @@ export default function ContactPage() {
                                                 id="name"
                                                 required
                                                 placeholder="John Doe"
-                                                className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-white/10 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium placeholder:text-foreground/30"
+                                                className="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium placeholder:text-foreground/30"
                                             />
                                         </div>
                                         <div className="space-y-2">
@@ -138,7 +138,7 @@ export default function ContactPage() {
                                                 id="email"
                                                 required
                                                 placeholder="john@example.com"
-                                                className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-white/10 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium placeholder:text-foreground/30"
+                                                className="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium placeholder:text-foreground/30"
                                             />
                                         </div>
                                     </div>
@@ -151,7 +151,7 @@ export default function ContactPage() {
                                             required
                                             rows={6}
                                             placeholder="Tell us about your project or inquiry..."
-                                            className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-white/10 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium resize-none placeholder:text-foreground/30"
+                                            className="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium resize-none placeholder:text-foreground/30"
                                         ></textarea>
                                     </div>
 

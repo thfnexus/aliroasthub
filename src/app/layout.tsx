@@ -7,6 +7,9 @@ import { Providers } from "@/components/Providers";
 export const metadata: Metadata = {
   title: "Ali Roast Hub | Premium Courses & Services",
   description: "Learn Pay Per Call, SEO, and Web Development. Get premium hosting and dashboard access at Ali Roast Hub.",
+  icons: {
+    icon: "https://i.ibb.co/LDsMnF6S/crazy-boy-removebg-preview.png",
+  },
 };
 
 export default function RootLayout({

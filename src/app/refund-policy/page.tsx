@@ -2,7 +2,7 @@ import { RotateCcw, ShieldCheck, Heart } from "lucide-react";
 
 export default function RefundPolicyPage() {
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pt-24 pb-12 overflow-x-hidden relative">
+        <div className="min-h-screen bg-slate-50 pt-24 pb-12 overflow-x-hidden relative">
             <div className="absolute bottom-20 left-10 w-[500px] h-[500px] bg-green-500/10 rounded-full blur-[128px] pointer-events-none" />
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -18,7 +18,7 @@ export default function RefundPolicyPage() {
                     </p>
                 </header>
 
-                <div className="glass p-8 md:p-12 rounded-[2rem] border-white/20 shadow-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl space-y-8 text-foreground/80 leading-relaxed">
+                <div className="bg-white/80 backdrop-blur-xl p-8 md:p-12 rounded-[2rem] border border-slate-100 shadow-xl space-y-8 text-foreground/80 leading-relaxed">
 
                     {/* Hero Highlight for Guarantee */}
                     <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
@@ -26,8 +26,8 @@ export default function RefundPolicyPage() {
                             <ShieldCheck className="h-10 w-10" />
                         </div>
                         <div>
-                            <h2 className="text-2xl font-bold text-green-700 dark:text-green-400 mb-2">30-Day Money-Back Guarantee</h2>
-                            <p className="text-green-800/70 dark:text-green-300/70">
+                            <h2 className="text-2xl font-bold text-green-700 mb-2">30-Day Money-Back Guarantee</h2>
+                            <p className="text-green-800/70">
                                 If you are not satisfied with your purchase for any reason, you can request a full refund within 30 days of your purchase date. No questions asked.
                             </p>
                         </div>

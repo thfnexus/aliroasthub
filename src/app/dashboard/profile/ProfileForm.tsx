@@ -33,9 +33,9 @@ export default function ProfileForm({ user }: ProfileFormProps) {
     };
 
     return (
-        <div className="glass rounded-[2rem] border-white/10 p-8 max-w-2xl">
+        <div className="bg-white rounded-[2rem] border border-slate-100 p-8 max-w-2xl shadow-sm">
             <div className="flex flex-col md:flex-row items-center gap-8 mb-8">
-                <div className="h-32 w-32 rounded-full bg-primary/10 flex items-center justify-center text-primary text-4xl font-bold border-4 border-white dark:border-slate-900 shadow-xl">
+                <div className="h-32 w-32 rounded-full bg-primary/10 flex items-center justify-center text-primary text-4xl font-bold border-4 border-white shadow-xl">
                     {name?.[0]?.toUpperCase() || "U"}
                 </div>
                 <div className="text-center md:text-left">
@@ -48,7 +48,7 @@ export default function ProfileForm({ user }: ProfileFormProps) {
 
             <div className="grid gap-6">
                 {/* Email Section (Read-only) */}
-                <div className="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-white/5 flex items-center gap-4">
+                <div className="p-4 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-4">
                     <div className="h-10 w-10 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center">
                         <Mail className="h-5 w-5" />
                     </div>
@@ -59,7 +59,7 @@ export default function ProfileForm({ user }: ProfileFormProps) {
                 </div>
 
                 {/* Name Edit Section */}
-                <div className="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-white/5 flex items-center gap-4 relative">
+                <div className="p-4 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-4 relative">
                     <div className="h-10 w-10 rounded-lg bg-orange-500/10 text-orange-500 flex items-center justify-center">
                         <User className="h-5 w-5" />
                     </div>
@@ -85,7 +85,7 @@ export default function ProfileForm({ user }: ProfileFormProps) {
                                         setIsEditing(false);
                                         setName(user.name || "");
                                     }}
-                                    className="p-2 hover:bg-red-50 dark:hover:bg-red-900/20 text-red-500 rounded-full transition-colors"
+                                    className="p-2 hover:bg-red-50 text-red-500 rounded-full transition-colors"
                                 >
                                     <X className="h-4 w-4" />
                                 </button>
@@ -100,7 +100,7 @@ export default function ProfileForm({ user }: ProfileFormProps) {
                         ) : (
                             <button
                                 onClick={() => setIsEditing(true)}
-                                className="p-2 hover:bg-slate-100 dark:hover:bg-white/5 text-foreground/50 hover:text-primary rounded-full transition-all"
+                                className="p-2 hover:bg-slate-200 text-foreground/50 hover:text-primary rounded-full transition-all"
                             >
                                 <Pen className="h-4 w-4" />
                             </button>

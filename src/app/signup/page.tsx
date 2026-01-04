@@ -42,11 +42,11 @@ export default function SignupPage() {
     };
 
     return (
-        <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center p-4 bg-slate-50 dark:bg-slate-950">
-            <div className="max-w-md w-full glass p-8 rounded-3xl border border-primary/10 shadow-xl">
+        <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center p-4 bg-slate-50">
+            <div className="max-w-md w-full bg-white p-8 rounded-3xl border border-slate-100 shadow-xl">
                 <div className="text-center mb-10">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl text-primary mb-4">
-                        <Rocket className="h-8 w-8" />
+                    <div className="inline-flex items-center justify-center w-20 h-20 mb-4">
+                        <img src="https://i.ibb.co/LDsMnF6S/crazy-boy-removebg-preview.png" alt="Logo" className="w-full h-auto" />
                     </div>
                     <h1 className="text-3xl font-bold mb-2">Create Account</h1>
                     <p className="text-foreground/60">Join Ali Roast Hub today</p>
@@ -69,7 +69,7 @@ export default function SignupPage() {
                                 placeholder="John Doe"
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 pl-10 pr-4 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                                className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                             />
                         </div>
                     </div>
@@ -84,7 +84,7 @@ export default function SignupPage() {
                                 placeholder="name@example.com"
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 pl-10 pr-4 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                                className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                             />
                         </div>
                     </div>
@@ -99,7 +99,7 @@ export default function SignupPage() {
                                 placeholder="••••••••"
                                 value={formData.password}
                                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                                className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-3 pl-10 pr-4 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                                className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                             />
                         </div>
                     </div>

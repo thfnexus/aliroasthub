@@ -109,10 +109,10 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
 
     if (success) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 p-4">
-                <div className="max-w-md w-full bg-white dark:bg-slate-950 p-8 rounded-2xl shadow-xl text-center border border-green-500/20">
-                    <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <CheckCircle className="h-10 w-10 text-green-600 dark:text-green-400" />
+            <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
+                <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-xl text-center border border-green-500/20">
+                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <CheckCircle className="h-10 w-10 text-green-600" />
                     </div>
                     <h2 className="text-2xl font-bold mb-2">Payment Submitted!</h2>
                     <p className="text-foreground/60 mb-8">
@@ -136,7 +136,7 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Left: Payment Instructions */}
                 <div className="space-y-6">
-                    <div className="bg-white dark:bg-slate-950 p-6 rounded-2xl border border-slate-200 dark:border-white/10 shadow-sm">
+                    <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
                         <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
                             <CreditCard className="h-5 w-5 text-primary" /> Select Payment Method
                         </h2>
@@ -148,7 +148,7 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
                                     onClick={() => setSelectedMethod(method)}
                                     className={`p-3 rounded-xl border text-sm font-bold transition-all flex flex-col items-center gap-2 ${selectedMethod.id === method.id
                                         ? "border-primary bg-primary/5 text-primary ring-2 ring-primary/20"
-                                        : "border-slate-200 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-white/5"
+                                        : "border-slate-200 hover:bg-slate-50"
                                         }`}
                                 >
                                     <div className={`w-3 h-3 rounded-full ${method.color}`} />
@@ -157,13 +157,13 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
                             ))}
                         </div>
 
-                        <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-white/5">
+                        <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
                             <p className="text-xs text-foreground/50 font-bold uppercase mb-1">Send Payment To:</p>
                             <div className="flex items-center justify-between mb-2">
                                 <span className="text-lg font-mono font-bold select-all">{selectedMethod.number}</span>
                                 <button
                                     onClick={() => handleCopy(selectedMethod.number)}
-                                    className="p-1.5 hover:bg-white dark:hover:bg-slate-800 rounded-lg transition-colors"
+                                    className="p-1.5 hover:bg-white rounded-lg transition-colors"
                                 >
                                     <Copy className="h-4 w-4 text-foreground/40" />
                                 </button>
@@ -177,12 +177,12 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
                 </div>
 
                 {/* Right: Submission Form */}
-                <div className="bg-white dark:bg-slate-950 p-6 rounded-2xl border border-slate-200 dark:border-white/10 shadow-lg h-fit">
+                <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-lg h-fit">
                     <h2 className="text-xl font-bold mb-6">Submit Payment Proof</h2>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                         {error && (
-                            <div className="p-3 bg-red-50 dark:bg-red-900/20 text-red-600 text-sm rounded-lg flex items-center gap-2">
+                            <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg flex items-center gap-2">
                                 <AlertCircle className="h-4 w-4" /> {error}
                             </div>
                         )}
@@ -194,7 +194,7 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
                                 value={trxId}
                                 onChange={(e) => setTrxId(e.target.value)}
                                 placeholder="e.g. 1234567890"
-                                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-primary/50 outline-none"
+                                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary/50 outline-none"
                                 required
                             />
                         </div>
@@ -203,7 +203,7 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
                             <label className="block text-sm font-medium mb-1.5">
                                 Screenshot <span className="text-xs text-foreground/50 font-normal">(Low size recommended, max 2MB)</span>
                             </label>
-                            <div className="border-2 border-dashed border-slate-200 dark:border-white/10 rounded-xl p-6 text-center hover:border-primary/50 transition-colors cursor-pointer relative">
+                            <div className="border-2 border-dashed border-slate-200 rounded-xl p-6 text-center hover:border-primary/50 transition-colors cursor-pointer relative">
                                 <input
                                     type="file"
                                     accept="image/*"

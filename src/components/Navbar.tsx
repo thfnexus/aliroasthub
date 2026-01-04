@@ -16,7 +16,11 @@ export default function Navbar() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     <Link href="/" className="flex items-center space-x-2">
-                        <Rocket className="h-8 w-8 text-primary" />
+                        <img
+                            src="https://i.ibb.co/LDsMnF6S/crazy-boy-removebg-preview.png"
+                            alt="Ali Roast Hub"
+                            className="h-10 w-auto"
+                        />
                         <span className="text-xl font-bold gradient-text">Ali Roast Hub</span>
                     </Link>
 

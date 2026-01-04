@@ -31,7 +31,7 @@ export default function SupportPage() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pt-24 pb-20 overflow-x-hidden relative">
+        <div className="min-h-screen bg-slate-50 pt-24 pb-20 overflow-x-hidden relative">
             {/* Background Gradients */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
 
@@ -59,15 +59,15 @@ export default function SupportPage() {
                             Frequently Asked Questions
                         </h2>
 
-                        <div className="glass rounded-2xl border-white/20 bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl overflow-hidden shadow-xl shadow-black/5">
+                        <div className="bg-white/60 backdrop-blur-xl rounded-2xl border border-slate-100 overflow-hidden shadow-xl shadow-black/5">
                             {faqs.map((faq, index) => (
-                                <div key={index} className="border-b border-foreground/5 last:border-0 border-white/10 dark:border-white/5">
+                                <div key={index} className="border-b border-foreground/5 last:border-0">
                                     <button
                                         onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                        className="w-full flex items-center justify-between p-6 text-left hover:bg-white/50 dark:hover:bg-white/5 transition-colors"
+                                        className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-colors"
                                     >
                                         <span className="font-bold text-lg pr-4">{faq.question}</span>
-                                        <div className={`p-2 rounded-full ${openIndex === index ? 'bg-primary text-white' : 'bg-slate-200 dark:bg-slate-800 text-foreground/50'} transition-all`}>
+                                        <div className={`p-2 rounded-full ${openIndex === index ? 'bg-primary text-white' : 'bg-slate-100 text-foreground/50'} transition-all`}>
                                             {openIndex === index ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                                         </div>
                                     </button>
@@ -98,7 +98,7 @@ export default function SupportPage() {
                             Contact Us
                         </h2>
 
-                        <div className="glass p-6 rounded-2xl border-white/20 bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl shadow-xl shadow-black/5 hover:-translate-y-1 transition-transform duration-300 group">
+                        <div className="bg-white/60 backdrop-blur-xl p-6 rounded-2xl border border-slate-100 shadow-xl shadow-black/5 hover:-translate-y-1 transition-transform duration-300 group">
                             <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center text-white mb-4 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
                                 <Mail className="h-6 w-6" />
                             </div>
@@ -109,7 +109,7 @@ export default function SupportPage() {
                             <p className="text-xs text-foreground/50 mt-2">Avg. response: 1-2 hours</p>
                         </div>
 
-                        <div className="glass p-6 rounded-2xl border-white/20 bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl shadow-xl shadow-black/5 hover:-translate-y-1 transition-transform duration-300 group">
+                        <div className="bg-white/60 backdrop-blur-xl p-6 rounded-2xl border border-slate-100 shadow-xl shadow-black/5 hover:-translate-y-1 transition-transform duration-300 group">
                             <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white mb-4 shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform">
                                 <Phone className="h-6 w-6" />
                             </div>
@@ -121,9 +121,9 @@ export default function SupportPage() {
                         </div>
 
                         <div className="p-6 rounded-2xl bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/20 text-center">
-                            <Clock className="h-8 w-8 text-green-600 dark:text-green-400 mx-auto mb-3" />
-                            <h4 className="font-bold text-green-700 dark:text-green-400">Response Time</h4>
-                            <p className="text-sm text-green-800/70 dark:text-green-300/70 mt-1">
+                            <Clock className="h-8 w-8 text-green-600 mx-auto mb-3" />
+                            <h4 className="font-bold text-green-700">Response Time</h4>
+                            <p className="text-sm text-green-800/70 mt-1">
                                 We verify payments within <br /><b>1 to 2 hours</b>.
                             </p>
                         </div>

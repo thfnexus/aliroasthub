@@ -2,7 +2,7 @@ import { FileText, Gavel, AlertCircle } from "lucide-react";
 
 export default function TermsOfServicePage() {
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pt-24 pb-12 overflow-x-hidden relative">
+        <div className="min-h-screen bg-slate-50 pt-24 pb-12 overflow-x-hidden relative">
             <div className="absolute top-20 right-[-10%] w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[128px] pointer-events-none" />
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -18,7 +18,7 @@ export default function TermsOfServicePage() {
                     </p>
                 </header>
 
-                <div className="glass p-8 md:p-12 rounded-[2rem] border-white/20 shadow-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl space-y-8 text-foreground/80 leading-relaxed">
+                <div className="bg-white/80 backdrop-blur-xl p-8 md:p-12 rounded-[2rem] border border-slate-100 shadow-xl space-y-8 text-foreground/80 leading-relaxed">
                     <section>
                         <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
                             <Gavel className="h-5 w-5 text-purple-500" />

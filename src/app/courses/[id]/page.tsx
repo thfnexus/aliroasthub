@@ -42,7 +42,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
     const instructorBio = instructorLines.slice(1).join(' ') || "Industry-focused trainers.";
 
     return (
-        <div className="min-h-screen pb-20 bg-slate-50 dark:bg-slate-950">
+        <div className="min-h-screen pb-20 bg-slate-50">
             {/* Hero Section */}
             <div className="bg-slate-900 text-white relative overflow-hidden">
                 <div className={`absolute inset-0 ${course.imageUrl} opacity-20 blur-3xl scale-125`}></div>
@@ -77,7 +77,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
 
                         {/* Right Purchase Card (Inside Hero) */}
                         <div className="w-full max-w-sm shrink-0">
-                            <div className="bg-white dark:bg-slate-950 text-slate-900 dark:text-white rounded-2xl shadow-2xl overflow-hidden border border-white/10">
+                            <div className="bg-white text-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-white/10">
                                 <div className={`h-48 ${course.imageUrl?.startsWith('http') ? '' : 'bg-slate-800'} relative`}>
                                     {course.imageUrl?.startsWith('http') ? (
                                         <img src={course.imageUrl} alt={course.title} className="w-full h-full object-cover" />
@@ -103,15 +103,15 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
 
                                     <div className="space-y-3 text-sm text-foreground/60">
                                         <div className="flex items-center gap-3">
-                                            <div className="h-1.5 w-1.5 rounded-full bg-slate-300 dark:bg-slate-600" />
+                                            <div className="h-1.5 w-1.5 rounded-full bg-slate-200" />
                                             <span>30-Day Money-Back Guarantee</span>
                                         </div>
                                         <div className="flex items-center gap-3">
-                                            <div className="h-1.5 w-1.5 rounded-full bg-slate-300 dark:bg-slate-600" />
+                                            <div className="h-1.5 w-1.5 rounded-full bg-slate-200" />
                                             <span>Full Lifetime Access</span>
                                         </div>
                                         <div className="flex items-center gap-3">
-                                            <div className="h-1.5 w-1.5 rounded-full bg-slate-300 dark:bg-slate-600" />
+                                            <div className="h-1.5 w-1.5 rounded-full bg-slate-200" />
                                             <span>Access on Mobile and TV</span>
                                         </div>
                                     </div>
@@ -130,7 +130,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
 
                         {/* What you'll learn */}
                         {whatYouWillLearn && (
-                            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 p-8 rounded-2xl shadow-sm">
+                            <div className="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
                                 <h2 className="text-2xl font-bold mb-6">What you'll learn</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     {whatYouWillLearn.split('\n').map((line, i) => {
@@ -150,7 +150,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
                         {/* Overview */}
                         <div className="space-y-4">
                             <h2 className="text-2xl font-bold">Course Overview</h2>
-                            <div className="prose dark:prose-invert max-w-none text-foreground/80 leading-relaxed whitespace-pre-wrap">
+                            <div className="prose max-w-none text-foreground/80 leading-relaxed whitespace-pre-wrap">
                                 {overview}
                             </div>
                         </div>
@@ -186,8 +186,8 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
                                     <h2 className="text-2xl font-bold">Course Content</h2>
                                     <div className="space-y-4">
                                         {modules.map((mod, i) => (
-                                            <div key={i} className="group border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden hover:border-primary/50 transition-colors">
-                                                <div className="bg-slate-50 dark:bg-slate-800/50 p-4 flex items-center justify-between cursor-default">
+                                            <div key={i} className="group border border-slate-200 rounded-xl overflow-hidden hover:border-primary/50 transition-colors">
+                                                <div className="bg-slate-50 p-4 flex items-center justify-between cursor-default">
                                                     <div className="flex items-center gap-3">
                                                         <div className="bg-primary/10 text-primary p-2 rounded-lg">
                                                             <BookOpen className="h-5 w-5" />
@@ -196,7 +196,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
                                                     </div>
                                                 </div>
                                                 {mod.content && (
-                                                    <div className="p-4 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-white/5 text-foreground/70 text-sm leading-relaxed">
+                                                    <div className="p-4 bg-white border-t border-slate-100 text-foreground/70 text-sm leading-relaxed">
                                                         {mod.content}
                                                     </div>
                                                 )}
@@ -216,7 +216,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
                                         const clean = line.replace('- ', '').trim();
                                         if (!clean) return null;
                                         return (
-                                            <div key={i} className="flex items-center gap-3 p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/5 rounded-xl">
+                                            <div key={i} className="flex items-center gap-3 p-4 bg-white border border-slate-200 rounded-xl">
                                                 <Award className="h-5 w-5 text-primary" />
                                                 <span className="font-medium">{clean}</span>
                                             </div>
@@ -244,10 +244,10 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
                     {/* Sidebar (Right, 1 col wide) */}
                     <div className="lg:col-span-1 space-y-8">
                         {/* Instructor Card */}
-                        <div className="sticky top-24 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-white/10 p-6">
+                        <div className="sticky top-24 bg-white rounded-2xl border border-slate-200 p-6">
                             <h3 className="text-lg font-bold mb-4">Instructor</h3>
                             <div className="flex items-start gap-4">
-                                <div className="h-12 w-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <div className="h-12 w-12 rounded-full bg-slate-50 flex items-center justify-center shrink-0">
                                     <User className="h-6 w-6 text-foreground/50" />
                                 </div>
                                 <div>
@@ -262,7 +262,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
             </div>
 
             {/* Mobile Purchase Bar (Sticky Bottom) - Only visible on small screens */}
-            <div className="lg:hidden fixed bottom-0 left-0 right-0 p-4 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-white/10 flex items-center justify-between z-50 shadow-upper">
+            <div className="lg:hidden fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-slate-100 flex items-center justify-between z-50 shadow-upper">
                 <div>
                     <p className="text-xs text-foreground/50 font-bold uppercase">Total Price</p>
                     <p className="text-xl font-black text-primary">PKR {course.price.toLocaleString()}</p>

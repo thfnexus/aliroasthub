@@ -30,9 +30,9 @@ export default function HostingPlans({ plans }: HostingPlansProps) {
                     <div
                         key={plan.id}
                         onClick={() => setSelectedPlanId(plan.id)}
-                        className={`relative bg-white dark:bg-slate-900 rounded-3xl p-8 border cursor-pointer transition-all duration-300 flex flex-col ${isSelected
-                                ? 'border-primary shadow-2xl scale-105 z-10 ring-4 ring-primary/10'
-                                : 'border-slate-200 dark:border-white/10 shadow-lg hover:border-primary/50 hover:shadow-xl'
+                        className={`relative bg-white rounded-3xl p-8 border cursor-pointer transition-all duration-300 flex flex-col ${isSelected
+                            ? 'border-primary shadow-2xl scale-105 z-10 ring-4 ring-primary/10'
+                            : 'border-slate-200 shadow-lg hover:border-primary/50 hover:shadow-xl'
                             }`}
                     >
                         {isSelected && (
@@ -45,7 +45,7 @@ export default function HostingPlans({ plans }: HostingPlansProps) {
                             <h3 className={`text-lg font-bold uppercase tracking-wider mb-2 ${isSelected ? 'text-primary' : 'text-foreground/70'}`}>
                                 {plan.title.replace('Hosting - ', '')}
                             </h3>
-                            <div className="text-4xl font-black text-slate-900 dark:text-white mb-2">
+                            <div className="text-4xl font-black text-slate-900 mb-2">
                                 PKR {plan.price.toLocaleString()}
                             </div>
                             <div className="text-sm text-foreground/50">per year</div>
@@ -73,8 +73,8 @@ export default function HostingPlans({ plans }: HostingPlansProps) {
                         <Link
                             href={`/courses/${plan.id}/checkout`}
                             className={`w-full py-4 rounded-xl font-bold text-center transition-all ${isSelected
-                                    ? 'bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/25'
-                                    : 'bg-slate-100 dark:bg-slate-800 text-foreground hover:bg-slate-200 dark:hover:bg-slate-700'
+                                ? 'bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/25'
+                                : 'bg-slate-100 text-foreground hover:bg-slate-200'
                                 }`}
                             onClick={(e) => e.stopPropagation()} // Prevent card click when clicking button
                         >

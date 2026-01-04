@@ -101,13 +101,13 @@ export default function AdminPage() {
     );
 
     if (loading) {
-        return <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950"><Loader2 className="animate-spin h-10 w-10 text-primary" /></div>;
+        return <div className="min-h-screen flex items-center justify-center bg-slate-50"><Loader2 className="animate-spin h-10 w-10 text-primary" /></div>;
     }
 
     return (
-        <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950">
+        <div className="flex min-h-screen bg-slate-50">
             {/* Sidebar */}
-            <aside className="hidden lg:flex w-64 flex-col glass border-r border-white/10 sticky top-16 h-[calc(100vh-4rem)]">
+            <aside className="hidden lg:flex w-64 flex-col bg-white border-r border-slate-100 sticky top-16 h-[calc(100vh-4rem)]">
                 <div className="p-6 space-y-2">
                     {[
                         { name: "Overview", icon: <LayoutDashboard /> },
@@ -117,7 +117,7 @@ export default function AdminPage() {
                         <button
                             key={i}
                             onClick={() => setActiveTab(item.name)}
-                            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${activeTab === item.name ? "bg-primary text-white" : "text-foreground/60 hover:bg-white/5"}`}
+                            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${activeTab === item.name ? "bg-primary text-white" : "text-foreground/60 hover:bg-slate-50"}`}
                         >
                             <span className="h-5 w-5">{item.icon}</span>
                             <span className="font-medium">{item.name}</span>
@@ -140,7 +140,7 @@ export default function AdminPage() {
                     <div className="lg:hidden relative">
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="w-full flex items-center justify-between px-4 py-3 bg-white dark:bg-slate-900 border border-white/10 rounded-xl"
+                            className="w-full flex items-center justify-between px-4 py-3 bg-white border border-slate-100 rounded-xl shadow-sm"
                         >
                             <span className="flex items-center gap-2 font-medium">
                                 {activeTab === "Overview" && <LayoutDashboard className="h-5 w-5" />}
@@ -152,7 +152,7 @@ export default function AdminPage() {
                         </button>
 
                         {isMobileMenuOpen && (
-                            <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-900 border border-white/10 rounded-xl shadow-xl z-50 overflow-hidden animate-in slide-in-from-top-2">
+                            <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-100 rounded-xl shadow-xl z-50 overflow-hidden animate-in slide-in-from-top-2">
                                 {[
                                     { name: "Overview", icon: <LayoutDashboard /> },
                                     { name: "User Management", icon: <Users /> },
@@ -164,7 +164,7 @@ export default function AdminPage() {
                                             setActiveTab(item.name);
                                             setIsMobileMenuOpen(false);
                                         }}
-                                        className={`w-full flex items-center gap-3 px-4 py-3 transition-colors ${activeTab === item.name ? "bg-primary/10 text-primary" : "text-foreground/70 hover:bg-slate-50 dark:hover:bg-white/5"}`}
+                                        className={`w-full flex items-center gap-3 px-4 py-3 transition-colors ${activeTab === item.name ? "bg-primary/10 text-primary" : "text-foreground/70 hover:bg-slate-50"}`}
                                     >
                                         <span className="h-5 w-5">{item.icon}</span>
                                         <span className="font-medium">{item.name}</span>
@@ -179,27 +179,27 @@ export default function AdminPage() {
                     <div className="space-y-8">
                         {/* Quick Stats */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div className="glass p-6 rounded-2xl border-white/10">
+                            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
                                 <p className="text-foreground/50 text-xs font-bold uppercase tracking-widest mb-2">Total Users</p>
                                 <p className="text-3xl font-black text-primary">{users.length}</p>
                             </div>
-                            <div className="glass p-6 rounded-2xl border-white/10">
+                            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
                                 <p className="text-foreground/50 text-xs font-bold uppercase tracking-widest mb-2">Active Courses</p>
                                 <p className="text-3xl font-black text-secondary">{courses.filter(c => c.category === 'COURSE').length}</p>
                             </div>
-                            <div className="glass p-6 rounded-2xl border-white/10">
+                            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
                                 <p className="text-foreground/50 text-xs font-bold uppercase tracking-widest mb-2">Services & Plans</p>
                                 <p className="text-3xl font-black text-purple-500">{courses.filter(c => c.category !== 'COURSE').length}</p>
                             </div>
-                            <div className="glass p-6 rounded-2xl border-white/10">
+                            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
                                 <p className="text-foreground/50 text-xs font-bold uppercase tracking-widest mb-2">Pending Payments</p>
                                 <p className="text-3xl font-black text-yellow-500">{purchases.length}</p>
                             </div>
                         </div>
 
                         {/* User Management Table */}
-                        <div className="glass rounded-[2rem] border-white/10 overflow-hidden bg-white dark:bg-slate-900/50">
-                            <div className="p-8 border-b border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <div className="bg-white rounded-[2rem] border border-slate-100 overflow-hidden shadow-sm">
+                            <div className="p-8 border-b border-slate-50 flex flex-col md:flex-row justify-between items-center gap-4">
                                 <h2 className="text-xl font-bold flex items-center gap-2">
                                     <Users className="text-primary h-6 w-6" /> User Database
                                 </h2>
@@ -209,23 +209,23 @@ export default function AdminPage() {
                                         placeholder="Search by name/email..."
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
-                                        className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 border border-transparent focus:border-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+                                        className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-100 focus:border-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
                                     />
                                 </div>
                             </div>
 
                             <div className="overflow-x-auto">
                                 <table className="w-full">
-                                    <thead className="bg-slate-50/50 dark:bg-slate-900/50 text-xs text-foreground/50 uppercase tracking-wider font-bold text-left">
+                                    <thead className="bg-slate-50/50 text-xs text-foreground/50 uppercase tracking-wider font-bold text-left">
                                         <tr>
                                             <th className="px-8 py-4">User Details</th>
                                             <th className="px-8 py-4">Current Enrollments</th>
                                             <th className="px-8 py-4">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-slate-100 dark:divide-white/5">
+                                    <tbody className="divide-y divide-slate-100">
                                         {filteredUsers.map((user) => (
-                                            <tr key={user.id} className="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group">
+                                            <tr key={user.id} className="hover:bg-slate-50 transition-colors group">
                                                 <td className="px-8 py-4">
                                                     <div className="flex items-center gap-3">
                                                         <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
@@ -236,7 +236,7 @@ export default function AdminPage() {
                                                             <p className="text-xs text-foreground/50">{user.email}</p>
                                                             <button
                                                                 onClick={() => handleToggleRole(user.id, user.role)}
-                                                                className={`inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-bold cursor-pointer hover:underline ${user.role === 'ADMIN' ? 'bg-purple-500/10 text-purple-500' : 'bg-slate-200 dark:bg-slate-800 text-slate-500'}`}
+                                                                className={`inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-bold cursor-pointer hover:underline ${user.role === 'ADMIN' ? 'bg-purple-500/10 text-purple-500' : 'bg-slate-100 text-slate-500'}`}
                                                                 title="Click to toggle role"
                                                             >
                                                                 {user.role}
@@ -263,7 +263,7 @@ export default function AdminPage() {
                                                         {/* Assign Course */}
                                                         <div className="relative group-hover:block transition-all">
                                                             <select
-                                                                className="appearance-none w-40 text-xs p-2.5 pr-8 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:border-primary cursor-pointer"
+                                                                className="appearance-none w-40 text-xs p-2.5 pr-8 rounded-lg border border-slate-200 bg-white focus:outline-none focus:border-primary cursor-pointer"
                                                                 id={`assign-${user.id}`}
                                                             >
                                                                 <option value="">+ Assign Course</option>
@@ -319,15 +319,15 @@ export default function AdminPage() {
 
                 {activeTab === "Payments" && (
                     <div className="space-y-8">
-                        <div className="glass rounded-[2rem] border-white/10 overflow-hidden bg-white dark:bg-slate-900/50">
-                            <div className="p-8 border-b border-white/10">
+                        <div className="bg-white rounded-[2rem] border border-slate-100 overflow-hidden shadow-sm">
+                            <div className="p-8 border-b border-slate-50">
                                 <h2 className="text-xl font-bold flex items-center gap-2">
                                     <CreditCard className="text-primary h-6 w-6" /> Pending Payment Approvals
                                 </h2>
                             </div>
                             <div className="overflow-x-auto">
                                 <table className="w-full">
-                                    <thead className="bg-slate-50/50 dark:bg-slate-900/50 text-xs text-foreground/50 uppercase tracking-wider font-bold text-left">
+                                    <thead className="bg-slate-50/50 text-xs text-foreground/50 uppercase tracking-wider font-bold text-left">
                                         <tr>
                                             <th className="px-8 py-4">User</th>
                                             <th className="px-8 py-4">Course/Service</th>
@@ -335,7 +335,7 @@ export default function AdminPage() {
                                             <th className="px-8 py-4">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-slate-100 dark:divide-white/5">
+                                    <tbody className="divide-y divide-slate-100">
                                         {purchases.length === 0 ? (
                                             <tr>
                                                 <td colSpan={4} className="px-8 py-12 text-center text-foreground/50">
@@ -344,7 +344,7 @@ export default function AdminPage() {
                                             </tr>
                                         ) : (
                                             purchases.map((purchase) => (
-                                                <tr key={purchase.id} className="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                                                <tr key={purchase.id} className="hover:bg-slate-50 transition-colors">
                                                     <td className="px-8 py-4">
                                                         <div>
                                                             <p className="font-bold text-sm text-foreground">{purchase.user?.name || "Unknown"}</p>
@@ -359,7 +359,7 @@ export default function AdminPage() {
                                                     </td>
                                                     <td className="px-8 py-4">
                                                         <div className="space-y-1">
-                                                            <p className="text-xs font-mono bg-slate-100 dark:bg-slate-800 p-1 rounded w-fit">TRX: {purchase.trxId}</p>
+                                                            <p className="text-xs font-mono bg-slate-50 p-1 rounded w-fit">TRX: {purchase.trxId}</p>
                                                             <p className="text-xs text-foreground/50">Via {purchase.method}</p>
                                                         </div>
                                                     </td>
