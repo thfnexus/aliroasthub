@@ -160,8 +160,13 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
                             const syllabusRaw = getSection(course.content || '', 'Syllabus');
                             if (!syllabusRaw) return null;
 
-                            const modules = [];
-                            let currentModule = null;
+                            interface CourseModule {
+                                title: string;
+                                content: string;
+                            }
+
+                            const modules: CourseModule[] = [];
+                            let currentModule: CourseModule | null = null;
 
                             syllabusRaw.split('\n').forEach(line => {
                                 const trim = line.trim();
@@ -180,7 +185,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
                                 <div className="space-y-6">
                                     <h2 className="text-2xl font-bold">Course Content</h2>
                                     <div className="space-y-4">
-                                        {modules.map((mod: any, i) => (
+                                        {modules.map((mod, i) => (
                                             <div key={i} className="group border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden hover:border-primary/50 transition-colors">
                                                 <div className="bg-slate-50 dark:bg-slate-800/50 p-4 flex items-center justify-between cursor-default">
                                                     <div className="flex items-center gap-3">
