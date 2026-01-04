@@ -13,9 +13,9 @@ export default async function ProfilePage() {
         <div className="p-8">
             <h1 className="text-3xl font-bold mb-10">My Profile</h1>
             <ProfileForm user={{
-                name: session.user.name,
-                email: session.user.email,
-                role: session.user.role as string
+                name: session.user.name ?? null,
+                email: session.user.email ?? null,
+                role: (session.user.role as string) ?? "USER"
             }} />
         </div>
     );
