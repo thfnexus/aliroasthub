@@ -33,7 +33,9 @@ export default function SignupPage() {
                 throw new Error(data.message || "Something went wrong");
             }
 
-            router.push("/login?message=Account created successfully. Please login.");
+            setError("");
+            // Redirect to login with the message from the API
+            router.push(`/login?message=${encodeURIComponent(data.message)}`);
         } catch (err: any) {
             setError(err.message);
         } finally {

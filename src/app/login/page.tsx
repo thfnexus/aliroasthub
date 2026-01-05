@@ -20,6 +20,18 @@ function LoginForm() {
     useEffect(() => {
         const msg = searchParams.get("message");
         if (msg) setMessage(msg);
+
+        const verified = searchParams.get("verified");
+        if (verified === "true") {
+            setMessage("Email verified successfully! You can now login.");
+        }
+
+        const err = searchParams.get("error");
+        if (err === "InvalidToken") {
+            setError("The verification link is invalid or has expired.");
+        } else if (err === "VerificationFailed") {
+            setError("Verification failed. Please try again or contact support.");
+        }
     }, [searchParams]);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -36,7 +48,14 @@ function LoginForm() {
             });
 
             if (result?.error) {
-                setError("Invalid email or password");
+                // Check if the error is our custom verification code
+                if (result.error.includes("EmailNotVerified")) {
+                    setError("Please verify your email address before logging in.");
+                } else if (result.error === "CredentialsSignin") {
+                    setError("Invalid email or password");
+                } else {
+                    setError(result.error);
+                }
             } else {
                 router.push("/dashboard");
                 router.refresh();

@@ -29,6 +29,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
                 if (!isValid) return null;
 
+                if (!user.emailVerified) {
+                    // Using a specific error message that we can catch
+                    throw new Error("EmailNotVerified");
+                }
+
                 return {
                     id: user.id,
                     name: user.name,
@@ -38,7 +43,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             },
         }),
     ],
+    // Let authConfig handle the rest of the callbacks if possible, 
+    // or explicitly merge them here.
     callbacks: {
+        ...authConfig.callbacks,
         async jwt({ token, user }) {
             if (user) {
                 token.id = user.id;
@@ -53,6 +61,5 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             }
             return session;
         }
-    },
-    secret: process.env.AUTH_SECRET || "secret_key_123_abc_xyz_0987",
+    }
 });

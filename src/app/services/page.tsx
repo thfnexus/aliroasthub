@@ -18,6 +18,9 @@ export default async function ServicesPage() {
         orderBy: { price: 'asc' } // PLUS -> DELUXE -> ULTIMATE
     });
 
+    const premiumServices = services.filter(s => s.price > 0);
+    const marketingServices = services.filter(s => s.price === 0);
+
     return (
         <div className="min-h-screen bg-slate-50 pb-20">
             {/* Header */}
@@ -37,9 +40,9 @@ export default async function ServicesPage() {
 
                 {/* Premium Services Section */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
-                    {services.map((service) => (
+                    {premiumServices.map((service) => (
                         <div key={service.id} className="bg-white rounded-3xl p-8 shadow-xl border border-slate-200 flex flex-col md:flex-row gap-8 items-center hover:-translate-y-1 transition-transform duration-300">
-                            <div className={`w-24 h-24 rounded-2xl flex items-center justify-center shrink-0 ${service.imageUrl?.includes('emerald') ? 'bg-emerald-100 text-emerald-600' : 'bg-blue-100 text-blue-600'}`}>
+                            <div className={`w-24 h-24 rounded-2xl flex items-center justify-center shrink-0 ${service.imageUrl?.includes('emerald') || service.imageUrl === 'emerald' ? 'bg-emerald-100 text-emerald-600' : 'bg-blue-100 text-blue-600'}`}>
                                 {service.title.includes('MarketCall') ? <Cpu className="h-10 w-10" /> : <Shield className="h-10 w-10" />}
                             </div>
                             <div className="flex-1 text-center md:text-left">
@@ -59,14 +62,57 @@ export default async function ServicesPage() {
                 </div>
 
                 {/* Hosting Plans Section */}
-                <div className="mb-20">
+                <div id="hosting" className="mb-24 scroll-mt-24">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-900">Hosting Infrastructure</h2>
-                        <p className="text-foreground/60">Choose the perfect plan for your business needs.</p>
+                        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-900">Hosting & Domain</h2>
+                        <p className="text-foreground/60">Professional infrastructure for your business needs.</p>
                     </div>
 
                     <HostingPlans plans={hostingPlans} />
                 </div>
+
+                {/* Marketing & Development Section (Card Style like Hosting) */}
+                {marketingServices.length > 0 && (
+                    <div className="mb-20">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-900">Digital Growth & Development</h2>
+                            <p className="text-foreground/60">Specialized solutions for your online presence.</p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {marketingServices.map((service) => {
+                                const whatsappNumber = "923414270742";
+                                const whatsappMsg = encodeURIComponent(`Hi, I am interested in the ${service.title} service. Please provide pricing and details.`);
+                                const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
+
+                                return (
+                                    <div key={service.id} className="bg-white rounded-3xl p-8 shadow-lg border border-slate-200 flex flex-col items-center text-center hover:border-primary transition-all duration-300">
+                                        <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-6 ${service.imageUrl?.includes('emerald') || service.imageUrl === 'emerald' ? 'bg-emerald-500/10 text-emerald-600' : 'bg-primary/10 text-primary'}`}>
+                                            {service.title.includes('Web') ? <Globe className="h-10 w-10" /> :
+                                                service.title.includes('Ads') ? <Zap className="h-10 w-10" /> :
+                                                    <Layers className="h-10 w-10" />}
+                                        </div>
+                                        <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
+                                        <p className="text-foreground/60 mb-8 flex-grow">
+                                            {service.description}
+                                        </p>
+                                        <div className="w-full space-y-4 pt-6 border-t border-slate-100">
+                                            <div className="text-primary font-bold">Pricing on WhatsApp</div>
+                                            <a
+                                                href={whatsappLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="w-full py-4 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-600 transition-colors flex items-center justify-center gap-2"
+                                            >
+                                                Contact on WhatsApp
+                                            </a>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
 
             </div>
         </div>
