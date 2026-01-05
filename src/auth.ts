@@ -29,7 +29,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
                 if (!isValid) return null;
 
-                if (!user.emailVerified) {
+                if (!(user as any).emailVerified) {
                     // Using a specific error message that we can catch
                     throw new Error("EmailNotVerified");
                 }
@@ -38,8 +38,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                     id: user.id,
                     name: user.name,
                     email: user.email,
-                    role: user.role as "ADMIN" | "USER",
-                };
+                    role: user.role,
+                    emailVerified: user.emailVerified,
+                } as any;
             },
         }),
     ],
@@ -51,6 +52,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             if (user) {
                 token.id = user.id;
                 token.role = (user as any).role as "ADMIN" | "USER";
+                token.emailVerified = (user as any).emailVerified;
             }
             return token;
         },
@@ -58,6 +60,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             if (session.user && token) {
                 session.user.id = token.id as string;
                 session.user.role = token.role as "ADMIN" | "USER";
+                (session.user as any).emailVerified = token.emailVerified as boolean | null;
             }
             return session;
         }
