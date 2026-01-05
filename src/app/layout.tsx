@@ -8,7 +8,14 @@ export const metadata: Metadata = {
   title: "Ali Roast Hub | Premium Courses & Services",
   description: "Learn Pay Per Call, SEO, and Web Development. Get premium hosting and dashboard access at Ali Roast Hub.",
   icons: {
-    icon: "https://i.ibb.co/LDsMnF6S/crazy-boy-removebg-preview.png",
+    icon: [
+      { url: "https://i.ibb.co/LDsMnF6S/crazy-boy-removebg-preview.png", sizes: "32x32", type: "image/png" },
+      { url: "https://i.ibb.co/LDsMnF6S/crazy-boy-removebg-preview.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: [
+      { url: "https://i.ibb.co/LDsMnF6S/crazy-boy-removebg-preview.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: ["https://i.ibb.co/LDsMnF6S/crazy-boy-removebg-preview.png"],
   },
 };
 
