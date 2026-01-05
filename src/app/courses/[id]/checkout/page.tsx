@@ -30,7 +30,11 @@ export default async function CheckoutPage({ params }: { params: Promise<{ id: s
             </div>
 
             {/* Wrapper passing params */}
-            <CheckoutForm params={{ id }} />
+            <CheckoutForm
+                params={{ id }}
+                courseCategory={course.category}
+                courseTitle={course.title}
+            />
 
             {/* Price Summary (can be integrated into form, but adding here for context) */}
             <div className="max-w-4xl mx-auto px-4 -mt-8 text-center">
