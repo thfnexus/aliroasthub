@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import { Cpu, Shield, Globe, Zap, Layers, Server, Check, ShoppingCart } from "lucide-react";
-import HostingPlans from "./HostingPlans";
+import { Cpu, Shield, Globe, Zap, Layers, ShoppingCart } from "lucide-react";
 
 export const dynamic = 'force-dynamic';
 
@@ -10,12 +9,6 @@ export default async function ServicesPage() {
     const services = await prisma.course.findMany({
         where: { category: 'SERVICE' },
         orderBy: { price: 'desc' }
-    });
-
-    // 2. Fetch Hosting Plans
-    const hostingPlans = await prisma.course.findMany({
-        where: { category: 'HOSTING' },
-        orderBy: { price: 'asc' } // PLUS -> DELUXE -> ULTIMATE
     });
 
     const premiumServices = services.filter(s => s.price > 0);
@@ -61,17 +54,7 @@ export default async function ServicesPage() {
                     ))}
                 </div>
 
-                {/* Hosting Plans Section */}
-                <div id="hosting" className="mb-24 scroll-mt-24">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-900">Hosting & Domain</h2>
-                        <p className="text-foreground/60">Professional infrastructure for your business needs.</p>
-                    </div>
-
-                    <HostingPlans plans={hostingPlans} />
-                </div>
-
-                {/* Marketing & Development Section (Card Style like Hosting) */}
+                {/* Marketing & Development Section */}
                 {marketingServices.length > 0 && (
                     <div className="mb-20">
                         <div className="text-center mb-16">
@@ -118,3 +101,4 @@ export default async function ServicesPage() {
         </div>
     );
 }
+

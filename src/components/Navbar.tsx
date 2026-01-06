@@ -29,7 +29,7 @@ export default function Navbar() {
                         <Link href="/" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Home</Link>
                         <Link href="/courses" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Courses</Link>
                         <Link href="/services" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Services</Link>
-                        <Link href="/services#hosting" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Hosting & Domain</Link>
+                        <Link href="/domain-hosting" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Hosting & Domain</Link>
                         <Link href="/support" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Support</Link>
                         <Link href="/contact" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Contact</Link>
 
@@ -89,7 +89,7 @@ export default function Navbar() {
                             Services
                         </Link>
                         <Link
-                            href="/services#hosting"
+                            href="/domain-hosting"
                             onClick={() => setIsOpen(false)}
                             className="block px-3 py-2 rounded-md text-base font-medium text-foreground/70 hover:text-primary hover:bg-primary/10"
                         >
