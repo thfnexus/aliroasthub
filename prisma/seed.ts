@@ -209,8 +209,8 @@ Our proprietary system designed to get your offers approved faster.
     },
     {
       title: "Hosting - PLUS Plan",
-      description: "The perfect starting point for businesses. Reliable hosting with a professional domain included.",
-      price: 4010,
+      description: "For those need of running multiple sites.",
+      price: 4440,
       duration: "Yearly",
       students: 312,
       rating: 4.9,
@@ -218,26 +218,24 @@ Our proprietary system designed to get your offers approved faster.
       imageUrl: "bg-gradient-to-br from-slate-700 to-slate-900",
       content: `
 # Top Features
-- 5 Websites
-- 50 GB SSD Storage
+- 5 Website
+- 10 GB NVMe Storage
 - 50 Email Accounts
-- 50 MySQL Accounts
-- 2 FTP Accounts
+- 100 MySQL Databases
 - 24/7 Customer Support
 
-# Also Includes
-- Free Domain - 1 Year
+# Also includes
+- Free Domain 1 Year
 - Free CDN Included
 - Free SSL Certificate
 - Free Domain Privacy
-- Free Automated Backup
 - Free Malware Protection
             `
     },
     {
       title: "Hosting - DELUXE Plan",
-      description: "Scale your business with more resources, faster speeds, and enhanced security features.",
-      price: 4780,
+      description: "Best performance with add-on options",
+      price: 5320,
       duration: "Yearly",
       students: 541,
       rating: 5.0,
@@ -245,26 +243,24 @@ Our proprietary system designed to get your offers approved faster.
       imageUrl: "bg-gradient-to-br from-purple-600 to-indigo-900",
       content: `
 # Top Features
-- 10 Websites
-- 100 GB SSD Storage
+- 100 Website
+- 100 GB NVMe Storage
 - 100 Email Accounts
-- 100 MySQL Accounts
-- 3 FTP Accounts
+- 500 MySQL Databases
 - 24/7 Customer Support
 
-# Also Includes
-- Free Domain - 1 Year
+# Also includes
+- Free Domain 1 Year
 - Free CDN Included
 - Free SSL Certificate
 - Free Domain Privacy
-- Free Automated Backup
 - Free Malware Protection
             `
     },
     {
       title: "Hosting - ULTIMATE Plan",
-      description: "The peak of performance. Dedicated resources and VIP support for the most demanding applications.",
-      price: 5620,
+      description: "Unlimited sites with automatic backup.",
+      price: 6280,
       duration: "Yearly",
       students: 128,
       rating: 5.0,
@@ -272,19 +268,18 @@ Our proprietary system designed to get your offers approved faster.
       imageUrl: "bg-gradient-to-br from-orange-500 to-red-700",
       content: `
 # Top Features
-- Unlimited Websites
-- Unlimited GB SSD Storage
+- Unlimited Website
+- Unlimited NVMe Storage
 - Unlimited Email Accounts
-- Unlimited MySQL Accounts
-- 5 FTP Accounts
+- 500 MySQL Databases
 - 24/7 Customer Support
 
-# Also Includes
-- Free Domain - 1 Year
+# Also includes
+- Free Domain 1 Year
 - Free CDN Included
 - Free SSL Certificate
 - Free Domain Privacy
-- Free Automated Backup
+- Free Daily Backup
 - Free Malware Protection
             `
     }
