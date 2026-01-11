@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Copy, CreditCard, Upload, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { Copy, CreditCard, Upload, CheckCircle, AlertCircle, Loader2, Tag } from "lucide-react";
 import { submitPurchase } from "./actions"; // We will create this next
 import Link from "next/link";
 import Image from "next/image";
@@ -45,11 +45,13 @@ const PAYMENT_METHODS = [
 export default function CheckoutPage({
     params,
     courseCategory,
-    courseTitle
+    courseTitle,
+    coursePrice
 }: {
     params: { id: string },
     courseCategory: string,
-    courseTitle: string
+    courseTitle: string,
+    coursePrice: number
 }) {
     const [selectedMethod, setSelectedMethod] = useState(PAYMENT_METHODS[0]);
     const [trxId, setTrxId] = useState("");
@@ -57,6 +59,28 @@ export default function CheckoutPage({
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
+
+    // Coupon Logic
+    const [couponCode, setCouponCode] = useState("");
+    const [isDiscountApplied, setIsDiscountApplied] = useState(false);
+    const [finalPrice, setFinalPrice] = useState(coursePrice);
+    const [couponError, setCouponError] = useState("");
+
+    const VALID_COUPON = "SUBSCRIBER30";
+    const DISCOUNT_PERCENT = 0.30;
+
+    const handleApplyCoupon = () => {
+        setCouponError("");
+        if (couponCode.toUpperCase() === VALID_COUPON) {
+            setIsDiscountApplied(true);
+            setFinalPrice(coursePrice * (1 - DISCOUNT_PERCENT));
+            alert("Coupon applied! 30% discount added.");
+        } else {
+            setCouponError("Invalid coupon code.");
+            setIsDiscountApplied(false);
+            setFinalPrice(coursePrice);
+        }
+    };
 
     const WHATSAPP_NUMBER = "+923414270742";
 
@@ -87,6 +111,9 @@ export default function CheckoutPage({
         formData.append("method", selectedMethod.name);
         formData.append("trxId", trxId);
         formData.append("screenshot", screenshot);
+        if (isDiscountApplied) {
+            formData.append("couponCode", VALID_COUPON);
+        }
 
         try {
             const result = await submitPurchase(formData);
@@ -230,6 +257,57 @@ export default function CheckoutPage({
                                 />
                                 <Upload className="h-8 w-8 text-foreground/30 mx-auto mb-2" />
                                 <p className="text-sm text-foreground/60">{screenshot ? screenshot.name : "Click to upload proof"}</p>
+                            </div>
+                        </div>
+
+                        {/* Coupon Section */}
+                        {courseCategory === 'COURSE' && (
+                            <div className="pt-4 border-t border-slate-100">
+                                <label className="block text-sm font-medium mb-1.5 text-primary flex items-center gap-2">
+                                    <Tag className="h-4 w-4" /> Have a Coupon Code?
+                                </label>
+                                <div className="flex gap-2">
+                                    <input
+                                        type="text"
+                                        value={couponCode}
+                                        onChange={(e) => setCouponCode(e.target.value)}
+                                        placeholder="Enter code"
+                                        disabled={isDiscountApplied}
+                                        className="flex-1 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary/50 outline-none uppercase disabled:opacity-50"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={handleApplyCoupon}
+                                        disabled={isDiscountApplied || !couponCode}
+                                        className="px-6 py-3 bg-slate-900 text-white rounded-xl font-bold hover:opacity-90 transition-all disabled:opacity-50"
+                                    >
+                                        Apply
+                                    </button>
+                                </div>
+                                {couponError && <p className="text-xs text-red-500 mt-1">{couponError}</p>}
+                                {isDiscountApplied && (
+                                    <div className="mt-2 text-sm text-green-600 font-bold flex items-center gap-1">
+                                        <CheckCircle className="h-4 w-4" /> 30% Discount Applied!
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {/* Order Summary in Form */}
+                        <div className="p-4 bg-primary/5 rounded-xl border border-primary/10 flex flex-col gap-1">
+                            <div className="flex justify-between text-sm">
+                                <span className="text-foreground/60">Original Price:</span>
+                                <span className={isDiscountApplied ? "line-through text-foreground/40" : "font-bold"}>PKR {coursePrice.toLocaleString()}</span>
+                            </div>
+                            {isDiscountApplied && (
+                                <div className="flex justify-between text-sm text-green-600 font-bold">
+                                    <span>Discount (30%):</span>
+                                    <span>- PKR {(coursePrice * 0.3).toLocaleString()}</span>
+                                </div>
+                            )}
+                            <div className="flex justify-between border-t border-primary/10 pt-2 mt-1">
+                                <span className="font-bold">Total Amount:</span>
+                                <span className="text-xl font-black text-primary">PKR {finalPrice.toLocaleString()}</span>
                             </div>
                         </div>
 

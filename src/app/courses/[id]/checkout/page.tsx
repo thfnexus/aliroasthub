@@ -34,6 +34,7 @@ export default async function CheckoutPage({ params }: { params: Promise<{ id: s
                 params={{ id }}
                 courseCategory={course.category}
                 courseTitle={course.title}
+                coursePrice={course.price}
             />
 
             {/* Price Summary (can be integrated into form, but adding here for context) */}

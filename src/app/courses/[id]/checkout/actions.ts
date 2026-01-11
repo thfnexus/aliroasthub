@@ -40,6 +40,16 @@ export async function submitPurchase(formData: FormData) {
         const course = await prisma.course.findUnique({ where: { id: courseId } });
         if (!course) return { success: false, error: "Course not found" };
 
+        // Handle Coupon Discount (Server-side validation)
+        const couponCode = formData.get("couponCode") as string;
+        let finalAmount = course.price;
+        const VALID_COUPON = "SUBSCRIBER30";
+
+        if (couponCode && couponCode.toUpperCase() === VALID_COUPON && course.category === 'COURSE') {
+            finalAmount = course.price * 0.70; // 30% discount
+            console.log(`Coupon ${VALID_COUPON} applied. Discounted price: ${finalAmount}`);
+        }
+
         // Check if already purchased/pending
         const existing = await prisma.purchase.findFirst({
             where: {
@@ -58,7 +68,7 @@ export async function submitPurchase(formData: FormData) {
             data: {
                 userId: session.user.id,
                 courseId: courseId,
-                amount: course.price,
+                amount: finalAmount,
                 method: method,
                 trxId: trxId,
                 screenshot: screenshotName,
