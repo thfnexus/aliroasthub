@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Lock, Mail, Rocket, Loader2 } from "lucide-react";
+import GoogleSignInButton from "@/components/GoogleSignInButton";
 
 function LoginForm() {
     const router = useRouter();
@@ -88,6 +89,17 @@ function LoginForm() {
                     {error}
                 </div>
             )}
+
+            <GoogleSignInButton />
+
+            <div className="relative mb-6">
+                <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-slate-200"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                    <span className="px-4 bg-white text-foreground/40 font-medium uppercase tracking-wider">or login with email</span>
+                </div>
+            </div>
 
             <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>

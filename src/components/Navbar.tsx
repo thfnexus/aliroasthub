@@ -15,34 +15,39 @@ export default function Navbar() {
         <nav className="fixed top-0 w-full z-50 glass border-b border-white/10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
-                    <Link href="/" className="flex items-center space-x-2">
-                        <img
-                            src="https://i.ibb.co/LDsMnF6S/crazy-boy-removebg-preview.png"
-                            alt="Ali Roast Hub"
-                            className="h-10 w-auto"
-                        />
-                        <span className="text-xl font-bold gradient-text">Ali Roast Hub</span>
-                    </Link>
+                    <div className="flex-1 flex items-center">
+                        <Link href="/" className="flex items-center space-x-2">
+                            <img
+                                src="https://i.ibb.co/LDsMnF6S/crazy-boy-removebg-preview.png"
+                                alt="Ali Roast Hub"
+                                className="h-10 w-auto"
+                            />
+                            <span className="text-xl font-bold gradient-text">Ali Roast Hub</span>
+                        </Link>
+                    </div>
 
-                    {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center space-x-8">
+                    {/* Desktop Menu - Centered Links */}
+                    <div className="hidden md:flex items-center justify-center space-x-8">
                         <Link href="/" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Home</Link>
                         <Link href="/courses" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Courses</Link>
                         <Link href="/services" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Services</Link>
                         <Link href="/domain-hosting" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Hosting & Domain</Link>
                         <Link href="/support" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Support</Link>
                         <Link href="/contact" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Contact</Link>
+                        {session && (
+                            <Link href="/dashboard" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Dashboard</Link>
+                        )}
+                    </div>
 
+                    {/* Desktop Menu - Right Action Buttons */}
+                    <div className="flex-1 hidden md:flex items-center justify-end space-x-6">
                         {session ? (
-                            <>
-                                <Link href="/dashboard" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Dashboard</Link>
-                                <button
-                                    onClick={() => signOut()}
-                                    className="flex items-center gap-2 text-sm font-medium text-red-500 hover:text-red-600 transition-colors cursor-pointer"
-                                >
-                                    <LogOut className="h-4 w-4" /> Logout
-                                </button>
-                            </>
+                            <button
+                                onClick={() => signOut()}
+                                className="flex items-center gap-2 text-sm font-medium text-red-500 hover:text-red-600 transition-colors cursor-pointer"
+                            >
+                                <LogOut className="h-4 w-4" /> Logout
+                            </button>
                         ) : (
                             <>
                                 <Link href="/login" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Login</Link>

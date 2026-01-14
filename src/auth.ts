@@ -1,12 +1,21 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import Google from "next-auth/providers/google";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { authConfig } from "./auth.config";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
     ...authConfig,
+    adapter: PrismaAdapter(prisma) as any,
+    session: { strategy: "jwt" },
     providers: [
+        Google({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            allowDangerousEmailAccountLinking: true,
+        }),
         Credentials({
             name: "Credentials",
             credentials: {
@@ -29,8 +38,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
                 if (!isValid) return null;
 
-                if (!(user as any).emailVerified) {
-                    // Using a specific error message that we can catch
+                if (!user.emailVerified) {
                     throw new Error("EmailNotVerified");
                 }
 
@@ -39,20 +47,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                     name: user.name,
                     email: user.email,
                     role: user.role,
-                    emailVerified: user.emailVerified,
                 } as any;
             },
         }),
     ],
-    // Let authConfig handle the rest of the callbacks if possible, 
-    // or explicitly merge them here.
     callbacks: {
         ...authConfig.callbacks,
-        async jwt({ token, user }) {
+        async jwt({ token, user, account }) {
             if (user) {
                 token.id = user.id;
-                token.role = (user as any).role as "ADMIN" | "USER";
-                token.emailVerified = (user as any).emailVerified;
+                token.role = (user as any).role || "USER";
             }
             return token;
         },
@@ -60,9 +64,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             if (session.user && token) {
                 session.user.id = token.id as string;
                 session.user.role = token.role as "ADMIN" | "USER";
-                (session.user as any).emailVerified = token.emailVerified as boolean | null;
             }
             return session;
         }
-    }
+    },
+    events: {
+        async linkAccount({ user }) {
+            await prisma.user.update({
+                where: { id: user.id },
+                data: { emailVerified: new Date() } as any,
+            });
+        },
+    },
 });

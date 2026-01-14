@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Lock, Mail, Rocket, User, Loader2 } from "lucide-react";
+import GoogleSignInButton from "@/components/GoogleSignInButton";
 
 export default function SignupPage() {
     const router = useRouter();
@@ -59,6 +60,17 @@ export default function SignupPage() {
                         {error}
                     </div>
                 )}
+
+                <GoogleSignInButton text="Sign up with Google" />
+
+                <div className="relative mb-6">
+                    <div className="absolute inset-0 flex items-center">
+                        <div className="w-full border-t border-slate-200"></div>
+                    </div>
+                    <div className="relative flex justify-center text-sm">
+                        <span className="px-4 bg-white text-foreground/40 font-medium uppercase tracking-wider">or sign up with email</span>
+                    </div>
+                </div>
 
                 <form className="space-y-6" onSubmit={handleSubmit}>
                     <div>
