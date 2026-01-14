@@ -208,6 +208,66 @@ Our proprietary system designed to get your offers approved faster.
             `
     },
     {
+      title: "Web Development",
+      description: "Custom high-performance websites and web applications tailored to your business needs. E-commerce, Portfolios, and Enterprise solutions.",
+      price: 0,
+      duration: "Custom",
+      students: 0,
+      rating: 5.0,
+      category: "SERVICE",
+      imageUrl: "blue",
+      content: `
+# Service Overview
+Professional web development services for modern businesses.
+
+# Features
+- Custom websites and web applications
+- E-commerce solutions
+- Portfolio sites
+- Enterprise solutions
+            `
+    },
+    {
+      title: "Google Ads",
+      description: "Scale your business with highly optimized Google Search, Display, and Video ads. Maximize your ROI with data-driven campaigns.",
+      price: 0,
+      duration: "Custom",
+      students: 0,
+      rating: 5.0,
+      category: "SERVICE",
+      imageUrl: "emerald",
+      content: `
+# Service Overview
+Professional Google Ads campaign management and optimization.
+
+# Features
+- Google Search Ads
+- Display Ads
+- Video Ads
+- Data-driven optimization
+            `
+    },
+    {
+      title: "Meta Ads",
+      description: "High-converting Facebook and Instagram ad campaigns. We handle everything from creative strategy to audience targeting and scaling.",
+      price: 0,
+      duration: "Custom",
+      students: 0,
+      rating: 5.0,
+      category: "SERVICE",
+      imageUrl: "blue",
+      content: `
+# Service Overview
+Expert Meta (Facebook & Instagram) advertising services.
+
+# Features
+- Facebook Ads
+- Instagram Ads
+- Creative strategy
+- Audience targeting and scaling
+            `
+    },
+    {
       title: "Hosting - PLUS Plan",
       description: "For those need of running multiple sites.",
       price: 4440,
