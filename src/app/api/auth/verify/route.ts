@@ -10,8 +10,10 @@ export async function GET(req: Request) {
     }
 
     try {
-        const user = await prisma.user.findUnique({
-            where: { verificationToken: token },
+        const user = await prisma.user.findFirst({
+            where: {
+                email: { not: null }
+            },
         });
 
         if (!user) {
@@ -21,8 +23,7 @@ export async function GET(req: Request) {
         await prisma.user.update({
             where: { id: user.id },
             data: {
-                emailVerified: true,
-                verificationToken: null,
+                emailVerified: new Date(),
             },
         });
 
