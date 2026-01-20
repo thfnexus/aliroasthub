@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Minus, Mail, Phone, Clock, HelpCircle, MessageCircle } from "lucide-react";
+import { Plus, Minus, Mail, Phone, Clock, HelpCircle, MessageCircle, Send, Loader2, MessageSquare } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
@@ -29,6 +29,33 @@ const faqs = [
 
 export default function SupportPage() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
+    const [submitting, setSubmitting] = useState(false);
+    const [sent, setSent] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setSubmitting(true);
+
+        const formData = new FormData(e.currentTarget);
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            if (response.ok) {
+                setSent(true);
+            } else {
+                alert("Something went wrong. Please try again.");
+            }
+        } catch (error) {
+            console.error("Submission error", error);
+            alert("Failed to send message.");
+        } finally {
+            setSubmitting(false);
+        }
+    };
 
     return (
         <div className="min-h-screen bg-slate-50 pt-24 pb-20 overflow-x-hidden relative">
@@ -50,7 +77,7 @@ export default function SupportPage() {
                 </div>
 
                 {/* Main Content Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
 
                     {/* FAQs Section */}
                     <div className="lg:col-span-2 space-y-4">
@@ -127,6 +154,97 @@ export default function SupportPage() {
                                 We verify payments within <br /><b>1 to 2 hours</b>.
                             </p>
                         </div>
+                    </div>
+                </div>
+
+                {/* Contact Form Section */}
+                <div className="w-full">
+                    <div className="h-full bg-white/80 backdrop-blur-xl p-8 md:p-10 rounded-[2rem] border border-slate-100 shadow-2xl shadow-black/5 relative overflow-hidden">
+
+                        {/* Decorative gradient inside form */}
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+
+                        {sent ? (
+                            <div className="h-full flex flex-col items-center justify-center text-center py-10 animate-in fade-in zoom-in duration-500">
+                                <div className="w-24 h-24 bg-gradient-to-tr from-green-400 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl shadow-green-500/30">
+                                    <Send className="h-10 w-10 text-white" />
+                                </div>
+                                <h2 className="text-4xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-emerald-700">Message Sent!</h2>
+                                <p className="text-foreground/60 mb-10 text-lg max-w-sm mx-auto">Thank you for dropping a line. We'll get back to you faster than light speed.</p>
+                                <button
+                                    onClick={() => setSent(false)}
+                                    className="px-8 py-3 bg-slate-100 rounded-xl font-bold hover:bg-slate-200 transition-colors border border-slate-200"
+                                >
+                                    Send Another Message
+                                </button>
+                            </div>
+                        ) : (
+                            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <MessageSquare className="text-primary h-6 w-6" />
+                                    <h2 className="text-2xl font-bold">Send us a Message</h2>
+                                </div>
+
+                                <input type="hidden" name="access_key" value="98de4472-be81-477d-be22-ab115ad4604d" />
+                                <input type="hidden" name="subject" value="New Contact Form Submission - Ali Roast Hub" />
+                                <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Full Name</label>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            id="name"
+                                            required
+                                            placeholder="John Doe"
+                                            className="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium placeholder:text-foreground/30"
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Email Address</label>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            id="email"
+                                            required
+                                            placeholder="john@example.com"
+                                            className="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium placeholder:text-foreground/30"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label htmlFor="message" className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Your Message</label>
+                                    <textarea
+                                        name="message"
+                                        id="message"
+                                        required
+                                        rows={6}
+                                        placeholder="Tell us about your project or inquiry..."
+                                        className="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium resize-none placeholder:text-foreground/30"
+                                    ></textarea>
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    disabled={submitting}
+                                    className="w-full py-4 bg-gradient-to-r from-primary to-purple-600 text-white rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.01] transition-all active:scale-[0.98] disabled:opacity-70 disabled:active:scale-100 flex items-center justify-center gap-2 mt-4"
+                                >
+                                    {submitting ? (
+                                        <>
+                                            <Loader2 className="animate-spin h-5 w-5" />
+                                            Sending...
+                                        </>
+                                    ) : (
+                                        <>
+                                            Send Message
+                                            <Send className="h-5 w-5" />
+                                        </>
+                                    )}
+                                </button>
+                            </form>
+                        )}
                     </div>
                 </div>
             </div>
