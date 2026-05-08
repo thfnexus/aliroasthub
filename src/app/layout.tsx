@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Providers } from "@/components/Providers";
+import WhatsAppChat from "@/components/WhatsAppChat";
 
 export const metadata: Metadata = {
   title: "Ali Roast Hub | Premium Courses & Services",
@@ -33,6 +34,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <WhatsAppChat />
         </Providers>
       </body>
     </html>

@@ -1,6 +1,6 @@
 // Server Component
 import { prisma } from "@/lib/prisma";
-import { ArrowRight, BookOpen, Clock, Users, Star, ShoppingCart } from "lucide-react";
+import { ArrowRight, BookOpen, Clock, Users, Star, CheckCircle, Shield, ShoppingCart, Award, User, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -41,8 +41,9 @@ export default async function CoursesPage() {
                                     <BookOpen className="h-16 w-16 text-white" />
                                 </div>
                             )}
-                            <div className="absolute top-4 right-4 bg-white px-3 py-1.5 rounded-lg shadow-lg font-bold text-sm text-primary">
-                                PKR {course.price.toLocaleString()}
+                            <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-lg font-bold text-xs text-emerald-600 border border-emerald-100 flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                                Pricing on WhatsApp
                             </div>
                         </div>
 
@@ -63,11 +64,16 @@ export default async function CoursesPage() {
                             </div>
 
                             {/* Actions */}
-                            <div className="flex gap-2 mt-auto">
-                                <Link href={`/courses/${course.id}/checkout`} className="flex-1 py-3 bg-primary text-white text-center rounded-xl font-bold hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
-                                    <ShoppingCart className="h-4 w-4" /> Buy Now
-                                </Link>
-                                <Link href={`/courses/${course.id}`} className="flex-1 py-3 bg-slate-100 text-foreground text-center rounded-xl font-bold hover:bg-slate-200 transition-colors">
+                            <div className="flex flex-col gap-3 mt-auto">
+                                <a 
+                                    href={`https://wa.me/923414270742?text=${encodeURIComponent(`Hi, I am interested in the ${course.title} course. Please provide pricing and details.`)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full py-3 bg-emerald-500 text-white text-center rounded-xl font-bold hover:bg-emerald-600 transition-all flex items-center justify-center gap-2"
+                                >
+                                    <MessageCircle className="h-4 w-4" /> Contact on WhatsApp
+                                </a>
+                                <Link href={`/courses/${course.id}`} className="w-full py-3 bg-slate-100 text-foreground text-center rounded-xl font-bold hover:bg-slate-200 transition-colors">
                                     View Details
                                 </Link>
                             </div >

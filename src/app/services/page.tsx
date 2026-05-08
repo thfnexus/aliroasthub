@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import { Cpu, Shield, Globe, Zap, Layers, ShoppingCart } from "lucide-react";
+import { Cpu, Shield, Globe, Zap, Layers, ShoppingCart, MessageCircle } from "lucide-react";
 
 export const dynamic = 'force-dynamic';
 
@@ -42,12 +42,17 @@ export default async function ServicesPage() {
                                 <h3 className="text-2xl font-bold mb-2">{service.title}</h3>
                                 <p className="text-foreground/60 mb-6">{service.description}</p>
                                 <div className="flex flex-col md:flex-row items-center gap-6 justify-between">
-                                    <div className="text-3xl font-black text-slate-900">
-                                        PKR {service.price.toLocaleString()}
+                                    <div className="text-primary font-bold">
+                                        Pricing on WhatsApp
                                     </div>
-                                    <Link href={`/courses/${service.id}/checkout`} className="px-8 py-3 bg-slate-900 text-white rounded-xl font-bold hover:opacity-90 transition-opacity flex items-center gap-2">
-                                        <ShoppingCart className="h-4 w-4" /> Buy Now
-                                    </Link>
+                                    <a 
+                                        href={`https://wa.me/923414270742?text=${encodeURIComponent(`Hi, I am interested in the ${service.title} service. Please provide pricing and details.`)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="px-8 py-3 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-600 transition-colors flex items-center gap-2"
+                                    >
+                                        <MessageCircle className="h-4 w-4" /> Contact on WhatsApp
+                                    </a>
                                 </div>
                             </div>
                         </div>

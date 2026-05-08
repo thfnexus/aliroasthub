@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
-import { BookOpen, Clock, Users, Star, CheckCircle, Shield, ShoppingCart, Award, User } from "lucide-react";
+import { BookOpen, Clock, Users, Star, CheckCircle, Shield, ShoppingCart, Award, User, MessageCircle } from "lucide-react";
 import Link from "next/link";
 
 export default async function CourseDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -92,14 +92,21 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
                                     </div>
                                 </div>
                                 <div className="p-6">
-                                    <div className="flex items-end gap-3 mb-6">
-                                        <div className="text-3xl font-black text-primary">PKR {course.price.toLocaleString()}</div>
-                                        <div className="text-sm text-foreground/40 font-medium line-through mb-1.5 ">PKR {(course.price * 1.5).toLocaleString()}</div>
+                                    <div className="mb-6">
+                                        <div className="text-2xl font-black text-emerald-600 flex items-center gap-2">
+                                            Pricing on WhatsApp
+                                        </div>
+                                        <div className="text-xs text-foreground/40 font-medium mt-1 uppercase tracking-wider">Contact for customized plans</div>
                                     </div>
 
-                                    <Link href={`/courses/${course.id}/checkout`} className="w-full py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-primary/25 mb-4">
-                                        <ShoppingCart className="h-5 w-5" /> Buy Now
-                                    </Link>
+                                    <a 
+                                        href={`https://wa.me/923414270742?text=${encodeURIComponent(`Hi, I am interested in the ${course.title} course. Please provide pricing and enrollment details.`)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full py-4 bg-emerald-500 text-white font-bold rounded-xl hover:bg-emerald-600 transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-emerald-500/20 mb-4"
+                                    >
+                                        <MessageCircle className="h-5 w-5" /> Contact on WhatsApp
+                                    </a>
 
                                     <div className="space-y-3 text-sm text-foreground/60">
                                         <div className="flex items-center gap-3">
@@ -264,10 +271,17 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
             {/* Mobile Purchase Bar (Sticky Bottom) - Only visible on small screens */}
             <div className="lg:hidden fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-slate-100 flex items-center justify-between z-50 shadow-upper">
                 <div>
-                    <p className="text-xs text-foreground/50 font-bold uppercase">Total Price</p>
-                    <p className="text-xl font-black text-primary">PKR {course.price.toLocaleString()}</p>
+                    <p className="text-xs text-foreground/50 font-bold uppercase tracking-wider">Interested?</p>
+                    <p className="text-lg font-black text-emerald-600">Pricing on WhatsApp</p>
                 </div>
-                <Link href={`/courses/${course.id}/checkout`} className="px-8 py-3 bg-primary text-white font-bold rounded-xl shadow-lg">Buy Now</Link>
+                <a 
+                    href={`https://wa.me/923414270742?text=${encodeURIComponent(`Hi, I am interested in the ${course.title} course. Please provide pricing and enrollment details.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 bg-emerald-500 text-white font-bold rounded-xl shadow-lg"
+                >
+                    Contact Now
+                </a>
             </div>
         </div>
     );

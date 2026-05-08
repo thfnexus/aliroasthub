@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Check } from 'lucide-react';
+import { Check, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 
 interface HostingPlan {
@@ -45,10 +45,10 @@ export default function HostingPlans({ plans }: HostingPlansProps) {
                             <h3 className={`text-lg font-bold uppercase tracking-wider mb-2 ${isSelected ? 'text-primary' : 'text-foreground/70'}`}>
                                 {plan.title.replace('Hosting - ', '')}
                             </h3>
-                            <div className="text-4xl font-black text-slate-900 mb-2">
-                                PKR {plan.price.toLocaleString()}
+                            <div className="text-2xl font-black text-emerald-600 mb-2">
+                                Pricing on WhatsApp
                             </div>
-                            <div className="text-sm text-foreground/50">per year</div>
+                            <div className="text-xs text-foreground/50 uppercase tracking-widest font-bold">Contact for Yearly Plan</div>
                         </div>
 
                         {/* Features List */}
@@ -70,16 +70,18 @@ export default function HostingPlans({ plans }: HostingPlansProps) {
                             })}
                         </div>
 
-                        <Link
-                            href={`/courses/${plan.id}/checkout`}
+                        <a
+                            href={`https://wa.me/923414270742?text=${encodeURIComponent(`Hi, I am interested in the ${plan.title} hosting plan. Please provide pricing and activation details.`)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className={`w-full py-4 rounded-xl font-bold text-center transition-all ${isSelected
-                                ? 'bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/25'
+                                ? 'bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg shadow-emerald-500/25'
                                 : 'bg-slate-100 text-foreground hover:bg-slate-200'
                                 }`}
                             onClick={(e) => e.stopPropagation()} // Prevent card click when clicking button
                         >
-                            Select Plan
-                        </Link>
+                            Contact Support
+                        </a>
                     </div>
                 );
             })}
