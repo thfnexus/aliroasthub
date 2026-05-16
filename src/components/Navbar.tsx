@@ -31,6 +31,7 @@ export default function Navbar() {
                         <Link href="/" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Home</Link>
                         <Link href="/courses" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Courses</Link>
                         <Link href="/services" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Services</Link>
+                        <Link href="/ppc" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">PPC Approvals</Link>
                         <Link href="/domain-hosting" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Hosting & Domain</Link>
                         <Link href="/support" className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">Support</Link>
 
@@ -92,6 +93,13 @@ export default function Navbar() {
                             className="block px-3 py-2 rounded-md text-base font-medium text-foreground/70 hover:text-primary hover:bg-primary/10"
                         >
                             Services
+                        </Link>
+                        <Link
+                            href="/ppc"
+                            onClick={() => setIsOpen(false)}
+                            className="block px-3 py-2 rounded-md text-base font-medium text-foreground/70 hover:text-primary hover:bg-primary/10"
+                        >
+                            PPC Approvals
                         </Link>
                         <Link
                             href="/domain-hosting"
